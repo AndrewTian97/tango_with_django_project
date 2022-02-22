@@ -21,6 +21,8 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
+LOGIN_URL = 'rango:login'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'd6@zm$2&o#f@t3nm6b-+j0g_l2=lzyjfo&ef5fy^f_$504se#h'
 
