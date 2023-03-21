@@ -29,7 +29,7 @@ urlpatterns = [
     path('rango/', include('rango.urls')),
     path('admin/', admin.site.urls),
     # for one-step registration
-    path('accounts/', include('registration.backends.simple.urls')),
+    # path('accounts/', include('registration.backends.simple.urls')),
     # for two-step registration
-    # path('accounts/', include('registration.backends.default.urls')),
+    path('accounts/', include('registration.backends.default.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

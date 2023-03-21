@@ -18,8 +18,8 @@ from django.core.mail import send_mail, EmailMessage
 def read_email_key():
     email_key = None
     try:
-        with open('email.key','r') as f:
-            email_key = f.readline().strip()
+        with open('../email.key','r') as f:
+            bing_api_key = f.readline().strip()
     except:
         raise IOError('email.key file not found')
     
