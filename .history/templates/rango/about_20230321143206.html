@@ -5,6 +5,29 @@
     About Rango
 {% endblock %}
 
+<style>
+    div.gallery {
+      margin: 5px;
+      border: 1px solid #ccc;
+      float: left;
+      width: 180px;
+    }
+    
+    div.gallery:hover {
+      border: 1px solid #777;
+    }
+    
+    div.gallery img {
+      width: 100%;
+      height: auto;
+    }
+    
+    div.desc {
+      padding: 15px;
+      text-align: center;
+    }
+</style>
+
 {% block body_block %}
 
     <div class="jumbotron p-4">
@@ -20,13 +43,9 @@
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
-        <div class="gallery">
-            <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
-        </div>
-        <div class="gallery">
-            <img class="gallary" src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat" />
-        </div> 
+    <div>
+        <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
+        <img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat" />
     </div>
 
     <p>Visits: {{ visits }}</p>

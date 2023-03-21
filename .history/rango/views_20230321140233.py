@@ -137,7 +137,7 @@ def visitor_cookie_handler(request):
     else:
         request.session['last_visit'] = last_visit_cookie
     
-    request.session['visits'] = visits
+    request.session['visits'] = visits    
     
 def search(request):
     
@@ -147,7 +147,6 @@ def search(request):
     
     if request.method == 'POST':
         query = request.POST['query'].strip()
-        value = query
         if query:
             # Run our Bing function to get the results list!
             result_list = run_query(query)

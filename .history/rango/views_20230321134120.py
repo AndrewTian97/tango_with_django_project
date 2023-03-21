@@ -137,22 +137,15 @@ def visitor_cookie_handler(request):
     else:
         request.session['last_visit'] = last_visit_cookie
     
-    request.session['visits'] = visits
+    request.session['visits'] = visits    
     
 def search(request):
-    
-    context_dict = {}
     result_list = []
-    value = ""
     
     if request.method == 'POST':
         query = request.POST['query'].strip()
-        value = query
         if query:
             # Run our Bing function to get the results list!
             result_list = run_query(query)
-    
-    context_dict['result_list'] = result_list
-    context_dict['value'] = value
             
-    return render(request, 'rango/search.html', context_dict)
+    return render(request, 'rango/search.html', {'result_list':result_list})

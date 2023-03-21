@@ -1,0 +1,73 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Search
+{% endblock %}
+
+{% block body_block %}
+
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Search with Rango</h1>
+    </div>
+</div>
+
+<div>
+    <form class="form-inline" id="user-form" method="post" action="{% url 'rango:search' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <input class="form-control" type="text" size="50" name="query" id="query" 
+                value="{{ value }}" autofocus onclick="PosEnd(query)">
+        </div>
+
+        <button class="btn btn-primary" type="submit" name="submit">
+            Search
+        </button>
+</div>
+
+<div>
+    {% if result_list %}
+    <h2>Result<h2>
+    
+    <div class="list-group">
+        {% for result in result_list %}
+            <div class="list-group-item">
+                <h3 class="list-group-item-item">
+                    <a href="{{ result.link }}">
+                        {% comment %} to show as an HTML {% endcomment %}
+                        {{ result.title|safe|escape }}
+                    </a>
+                </h3>
+                <p class="list-group-item-text">
+                    {{ result.summary|safe|escape }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    /* Creating a function called PosEnd
+     in JavaScript to place the cursor 
+     at the end */
+    function PosEnd(end) {
+        var len = end.value.length;
+          
+        // Mostly for Web Browsers
+        if (end.setSelectionRange) {
+            end.focus();
+            end.setSelectionRange(len, len);
+        } else if (end.createTextRange) {
+            var t = end.createTextRange();
+            t.collapse(true);
+            t.moveEnd('character', len);
+            t.moveStart('character', len);
+            t.select();
+        }
+    }
+</script>
+
+{% endblock %}

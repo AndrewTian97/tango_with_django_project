@@ -20,7 +20,8 @@
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
+    <div id="cenerdiv">
+    <div class="row">
         <div class="gallery">
             <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
         </div>
@@ -28,6 +29,7 @@
             <img class="gallary" src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat" />
         </div> 
     </div>
+</div>
 
     <p>Visits: {{ visits }}</p>
 
