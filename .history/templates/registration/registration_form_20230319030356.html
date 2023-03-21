@@ -1,0 +1,26 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Register
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
+        <h2 class="h2">
+            Register Here!
+        </h2>
+    </div>
+</div>
+
+<form method="post" action=".">
+    {% csrf_token %}
+
+    {{ user_form.as_p }}
+
+    <input type="submit" value="Register" />
+</form>
+
+{% endblock %}

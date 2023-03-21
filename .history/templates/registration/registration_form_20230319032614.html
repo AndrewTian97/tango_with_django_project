@@ -1,0 +1,57 @@
+{% extends 'rango/base.html' %}
+
+{% block title_block %}
+    Register
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
+        <h2 class="h2">
+            Register Here!
+        </h2>
+    </div>
+</div>
+
+<div class="container">
+<div class="row">
+    <div class="form-group">
+    <form role="form" method="post" action=".">
+        {% csrf_token %}
+        <div class="form-group">
+            <p><label class="required" for="id_username">Username:</label>
+                <input class="form-control" type="text" name="username" maxlength="150" required id="id_username"> 
+                <span class="helptext">
+                    Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                </span>
+            </p>
+
+            <p><label class="required" for="id_email">Email address:</label>
+                <input class="form-control" type="email" name="email" maxlength="254" id="id_email">
+            </p>
+            
+            <p><label class="required" for="id_password">Password:</label>
+                <input class="form-control" type="password" name="password" required id="id_password">
+            </p>
+            
+            <p><label class="required" for="id_confirm_password">Confirm password:</label>
+                <input class="form-control" type="password" name="confirm_password" required id="id_confirm_password">
+            </p>
+            
+            <p><label for="id_website">Website:</label>
+                <input class="form-control" type="url" name="website" maxlength="200" id="id_website">
+            </p>
+            
+            <p><label for="id_picture">Picture:</label>
+                <input class="form-control" type="file" name="picture" accept="image/*" id="id_picture">
+            </p>
+
+        </div>
+        <button class="btn btn-primary" type="submit" value="submit">Register</button>
+    </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}

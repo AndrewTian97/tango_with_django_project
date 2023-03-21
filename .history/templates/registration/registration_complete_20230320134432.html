@@ -1,0 +1,8 @@
+{% extends 'rango/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Activation email sent" %}{% endblock %}
+
+{% block content %}
+<p>{% trans "Please check your email, {{ request.session.registration_email }}, to complete the registration process." %}</p>
+{% endblock %}
