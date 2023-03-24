@@ -1,0 +1,18 @@
+{% extends 'rango/base.html' %}
+
+{% block title_block %}
+    Activation completed
+{% endblock %}
+
+{% block body_block %} 
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1>Activated!</h1>
+    </div>
+</div>
+
+<a class="btn btn-primary"  href="{% url 'rango:register_profile' %}">Create Profile</a>
+
+<div class="p-3"></div>
+
+{% endblock %}
