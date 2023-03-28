@@ -1,0 +1,38 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    About Rango
+{% endblock %}
+
+{% block body_block %}
+
+    <div class="jumbotron p-4">
+        <div class="container">
+            <h1 class="jumbotron-heading">Rango says...</h1>
+
+            <div>
+                <h2 class="h2">
+                    here is the about page. <br/>
+                </h2>
+                <strong>{{ boldmessage }}</strong><br />
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="gallery">
+            <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
+        </div>
+        <div class="gallery">
+            <img class="gallary" src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat" />
+        </div> 
+    </div>
+
+    <button class="btn btn-primary" id="about-btn">
+        Click me - I'm using JQuery!
+    </button>
+
+    <p>Visits: {{ visits }}</p>
+
+{% endblock %}
