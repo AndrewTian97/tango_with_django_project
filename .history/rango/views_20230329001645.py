@@ -71,20 +71,16 @@ class ShowCategoryView(View):
             
         return context_dict
     
-    @method_decorator(login_required)
-    def check_liked(self, request, context_dict):
+    def get(self, request, category_name_slug):
+        
+        context_dict = self.generate_dict(category_name_slug)
+        
         current_user = request.user
         current_profile = UserProfile.objects.get(user=current_user)
         if current_profile in context_dict['category'].userprofile_set.all():
             context_dict['liked'] = True
-        return context_dict
-    
-    def get(self, request, category_name_slug):
-        
-        context_dict = self.generate_dict(category_name_slug)
-        context_dict['liked'] = False
-
-        self.check_liked(request, context_dict)
+        else:
+            context_dict['liked'] = False
             
         return render(request, 'rango/category.html', context=context_dict)
     
@@ -287,7 +283,7 @@ class ListProfilesView(View):
         return render(request, 'rango/list_profiles.html', {'userprofile_list': profiles})
     
 class LikeCategoryView(View):
-    @method_decorator(login_required)
+    @login_required
     def get(self, request):
         category_id = request.GET['category_id']
         current_user = request.user
