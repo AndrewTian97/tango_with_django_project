@@ -170,5 +170,5 @@ MEDIA_URL = '/media/'
 ACCOUNT_ACTIVATION_DAYS = 1
 REGISTRATION_OPEN = True
 
-TIME_ZONE = 'Europe/London'
+TIME_ZONE = 'Europe/Glasgow'
 

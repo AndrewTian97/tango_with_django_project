@@ -24,9 +24,9 @@ from rango.bing_search import run_query
 
 from django.views import View
 from django.utils.decorators import method_decorator
-from django.utils import timezone
 
 from rango.models import MyUser, UserProfile
+from django.utils import timezone
 
 REGISTRATION_FORM_PATH = getattr(settings, 'REGISTRATION_FORM',
                                  'registration.forms.RegistrationForm')
@@ -65,7 +65,7 @@ class ShowCategoryView(View):
             urls = []
             for page in pages:
                 urls.append(page.url)
-            # print(urls)
+            print(urls)
             
             context_dict['pages'] = pages
             context_dict['category'] = category
@@ -231,7 +231,6 @@ class GoToView(View):
             return redirect(reverse('rango:index'))
         
         selected_page.views = selected_page.views + 1
-        selected_page.last_visit = timezone.now()
         selected_page.save()
         
         return redirect(selected_page.url)

@@ -65,7 +65,7 @@ class ShowCategoryView(View):
             urls = []
             for page in pages:
                 urls.append(page.url)
-            # print(urls)
+            print(urls)
             
             context_dict['pages'] = pages
             context_dict['category'] = category
@@ -231,7 +231,6 @@ class GoToView(View):
             return redirect(reverse('rango:index'))
         
         selected_page.views = selected_page.views + 1
-        selected_page.last_visit = timezone.now()
         selected_page.save()
         
         return redirect(selected_page.url)

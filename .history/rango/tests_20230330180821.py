@@ -13,9 +13,6 @@ def add_category(name, views=0, likes=0):
     category.save()
     return category
 
-def add_page(category, title, url):
-    return Page.objects.get_or_create(category=category, title=title, url=url)[0]     
-
 class CategoryMethodTests(TestCase):
     def test_ensure_views_are_positive(self):
         """

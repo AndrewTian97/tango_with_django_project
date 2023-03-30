@@ -4,18 +4,6 @@ from django.urls import reverse
 from django.utils import timezone
 
 # Create your tests here.
-        
-def add_category(name, views=0, likes=0):
-    category = Category.objects.get_or_create(name=name)[0]
-    category.views = views
-    category.likes = likes
-        
-    category.save()
-    return category
-
-def add_page(category, title, url):
-    return Page.objects.get_or_create(category=category, title=title, url=url)[0]     
-
 class CategoryMethodTests(TestCase):
     def test_ensure_views_are_positive(self):
         """
@@ -62,7 +50,10 @@ class IndexViewTests(TestCase):
         self.assertContains(response, "Erlang")
         
         num_categories = len(response.context['categories'])
-        self.assertEquals(num_categories, 3)   
+        self.assertEquals(num_categories, 3)
+        
+def add_page(category, title, url):
+    return Page.objects.get_or_create(category=category, title=title, url=url)[0]        
 
 class PageAccessTests(TestCase):
     def test_last_visit_not_in_future(self):

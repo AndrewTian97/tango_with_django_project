@@ -39,7 +39,7 @@
             {% for page in pages %}
             <li class="list-group-item">
                 <div class="row">
-                    <a class="col-md-7"
+                    <a class="col-md-6"
                         href="{% url 'rango:goto' %}?page_id={{page.id}}">{{ page.title }}</a>
                     <div class="col-md-2">
                         {% if page.views == 1 %}
@@ -48,8 +48,8 @@
                             {{ page.views}} views
                         {% endif %}
                     </div>
-                    <div class="col-md-3">
-                        <i>Last visit: {{ page.last_visit|date:'Y-m-d H:i' }}</i>
+                    <div class="col-md-4">
+                        Last visit: {{ page.last_visit }}
                     </div>
                 </div>
             </li>
