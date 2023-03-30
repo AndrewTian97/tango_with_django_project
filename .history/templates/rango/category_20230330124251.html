@@ -37,19 +37,13 @@
         <div class="p-2"></div>
 
         {% if pages %}
-        <ul class="list-group" id="pages-list">
+        <ul class="list-group">
             {% for page in pages %}
             <li class="list-group-item">
                 <div class="row">
                     <a class="col-md-9"
                         href="{% url 'rango:goto' %}?page_id={{page.id}}">{{ page.title }}</a>
-                    <div class="col-md-3">
-                        {% if page.views == 1 %}
-                            {{ page.views }} view
-                        {% else %}
-                            {{ page.views}} views
-                        {% endif %}
-                    </div>
+                    <div class="col-md-3"v>views: {{page.views}}</div>
                 </div>
             </li>
             {% endfor %}
@@ -86,7 +80,7 @@
                 
                 <div class="list-group">
                     {% for result in result_list %}
-                        <div class="list-group-item">
+                        <div class="list-group-item" id="result-item">
                             <h5 class="list-group-item-item">
                                 <a href="{{ result.link }}">
                                     {% comment %} to show as an HTML {% endcomment %}

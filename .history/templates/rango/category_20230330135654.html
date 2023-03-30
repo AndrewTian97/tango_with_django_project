@@ -43,11 +43,11 @@
                 <div class="row">
                     <a class="col-md-9"
                         href="{% url 'rango:goto' %}?page_id={{page.id}}">{{ page.title }}</a>
-                    <div class="col-md-3">
-                        {% if page.views == 1 %}
-                            {{ page.views }} view
-                        {% else %}
-                            {{ page.views}} views
+                    <div class="col-md-3"v>
+                        {% if page.views > 1 %}
+                            ({{ page.views }} views)
+                        {% elif page.views == 1 %}
+                            ({{ page.views}} view)
                         {% endif %}
                     </div>
                 </div>

@@ -53,8 +53,8 @@ $(document).ready(function() {
                 'category_id': categoryid, 'title': title, 'url':url              
               },
               function(data) {
-                console.log(data);
-                $('#pages-list').html(data);
+                console.log('hello');
+                $('#result-item').html(data);
                 clickedButton.attr("disabled", true);
               })
     });

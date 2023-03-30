@@ -54,7 +54,7 @@ $(document).ready(function() {
               },
               function(data) {
                 console.log(data);
-                $('#pages-list').html(data);
+                $('#result-item').html(data);
                 clickedButton.attr("disabled", true);
               })
     });
