@@ -95,7 +95,9 @@
                                 data-categoryid="{{ category.id }}"
                                 data-title="{{ result.title }}"
                                 data-url="{{ result.link }}"
-                                {% if result.link in urls %} disabled=true {% endif %}>
+                                {% if result.link in urls %}
+                                disabled=true
+                                {% endif %}>
                                     Add this page
                             </button>
                         </div>

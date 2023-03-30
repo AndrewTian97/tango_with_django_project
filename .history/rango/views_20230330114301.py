@@ -64,7 +64,6 @@ class ShowCategoryView(View):
             urls = []
             for page in pages:
                 urls.append(page.url)
-            print(urls)
             
             context_dict['pages'] = pages
             context_dict['category'] = category

@@ -91,13 +91,21 @@
                                 {{ result.summary|safe|escape }}
                             </p>
                             
+                            {% if result.link in urls %}
                             <button class="btn btn-info btn-md rango-page-add" type="button" 
-                                data-categoryid="{{ category.id }}"
-                                data-title="{{ result.title }}"
-                                data-url="{{ result.link }}"
-                                {% if result.link in urls %} disabled=true {% endif %}>
-                                    Add this page
+                                    data-categoryid="{{ category.id }}"
+                                    data-title="{{ result.title }}"
+                                    data-url="{{ result.link }}" disabled=true>
+                                        Add this page
                             </button>
+                            {% else %}
+                            <button class="btn btn-info btn-md rango-page-add" type="button" 
+                                    data-categoryid="{{ category.id }}"
+                                    data-title="{{ result.title }}"
+                                    data-url="{{ result.link }}">
+                                        Add this page
+                            </button>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>

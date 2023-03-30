@@ -90,14 +90,7 @@
                             <p class="list-group-item-text">
                                 {{ result.summary|safe|escape }}
                             </p>
-                            
-                            <button class="btn btn-info btn-md rango-page-add" type="button" 
-                                data-categoryid="{{ category.id }}"
-                                data-title="{{ result.title }}"
-                                data-url="{{ result.link }}"
-                                {% if result.link in urls %} disabled=true {% endif %}>
-                                    Add this page
-                            </button>
+                            <button data-title={{ result.title }} data-url={{ result.link }}>Add Page</button>
                         </div>
                     {% endfor %}
                 </div>

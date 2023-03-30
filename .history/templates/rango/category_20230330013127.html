@@ -80,7 +80,7 @@
                 
                 <div class="list-group">
                     {% for result in result_list %}
-                        <div class="list-group-item" id="result-item">
+                        <div class="list-group-item">
                             <h5 class="list-group-item-item">
                                 <a href="{{ result.link }}">
                                     {% comment %} to show as an HTML {% endcomment %}
@@ -90,21 +90,14 @@
                             <p class="list-group-item-text">
                                 {{ result.summary|safe|escape }}
                             </p>
-                            
-                            <button class="btn btn-info btn-md rango-page-add" type="button" 
-                                data-categoryid="{{ category.id }}"
-                                data-title="{{ result.title }}"
-                                data-url="{{ result.link }}"
-                                {% if result.link in urls %} disabled=true {% endif %}>
-                                    Add this page
-                            </button>
+                            <button>Add Page</button>
                         </div>
                     {% endfor %}
                 </div>
                 {% endif %}
             </div>
 
-            {% comment %} <a href="{% url 'rango:add_page' category.slug %}">Add Page</a><br/> {% endcomment %}
+            <a href="{% url 'rango:add_page' category.slug %}">Add Page</a><br/>
         {% endif %}
 
     {% else %}

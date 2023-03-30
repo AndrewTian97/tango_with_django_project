@@ -79,7 +79,7 @@
                 <h2>Result</h2>
                 
                 <div class="list-group">
-                    {% for result in result_list %}
+                    {% for result in result-list %}
                         <div class="list-group-item" id="result-item">
                             <h5 class="list-group-item-item">
                                 <a href="{{ result.link }}">
@@ -90,13 +90,11 @@
                             <p class="list-group-item-text">
                                 {{ result.summary|safe|escape }}
                             </p>
-                            
-                            <button class="btn btn-info btn-md rango-page-add" type="button" 
-                                data-categoryid="{{ category.id }}"
-                                data-title="{{ result.title }}"
-                                data-url="{{ result.link }}"
-                                {% if result.link in urls %} disabled=true {% endif %}>
-                                    Add this page
+                            <button class="btn btn-info btn-md rango-page-add" type"button" 
+                                    data-categoryid={{ category.id }}
+                                    data-title={{ result.title }} 
+                                    data-url={{ result.link }}>
+                                Add this page
                             </button>
                         </div>
                     {% endfor %}

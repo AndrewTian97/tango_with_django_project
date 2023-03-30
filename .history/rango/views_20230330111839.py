@@ -61,19 +61,13 @@ class ShowCategoryView(View):
         try:
             category = Category.objects.get(slug=category_name_slug)
             pages = Page.objects.filter(category=category).order_by('-views')
-            urls = []
-            for page in pages:
-                urls.append(page.url)
-            print(urls)
             
             context_dict['pages'] = pages
             context_dict['category'] = category
-            context_dict['urls'] = urls
         
         except Category.DoesNotExist:
             context_dict['category'] = None
             context_dict['pages'] = None
-            context_dict['urls'] = None
             
         return context_dict
     
@@ -176,6 +170,7 @@ class SearchAddPageView(View):
     def get(self, request):
         category_id = request.GET['category_id']
         title = request.GET['title']
+        print(title)
         url = request.GET['url']
         
         try:

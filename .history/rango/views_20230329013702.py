@@ -61,19 +61,13 @@ class ShowCategoryView(View):
         try:
             category = Category.objects.get(slug=category_name_slug)
             pages = Page.objects.filter(category=category).order_by('-views')
-            urls = []
-            for page in pages:
-                urls.append(page.url)
-            print(urls)
             
             context_dict['pages'] = pages
             context_dict['category'] = category
-            context_dict['urls'] = urls
         
         except Category.DoesNotExist:
             context_dict['category'] = None
             context_dict['pages'] = None
-            context_dict['urls'] = None
             
         return context_dict
     
@@ -170,25 +164,6 @@ class AddPageView(View):
             
         context_dict = {'form': form, 'category': category}
         return render(request, 'rango/add_page.html', context=context_dict)
-    
-class SearchAddPageView(View):
-    @method_decorator(login_required)
-    def get(self, request):
-        category_id = request.GET['category_id']
-        title = request.GET['title']
-        url = request.GET['url']
-        
-        try:
-            category = Category.objects.get(id=int(category_id))
-        except Category.DoesNotExist:
-            return HttpResponse('Error - category not found.')
-        except ValueError:
-            return HttpResponse('Error - bad category ID.')
-        
-        p = Page.objects.get_or_create(category=category, title=title, url=url)
-        
-        pages = Page.objects.filter(category=category).order_by('-views')
-        return render(request, 'rango/page_listing.html', {'pages':pages})
     
 # @login_required <- this is the mark for function, so here it should be commented
 class RestrictedView(View):
@@ -340,28 +315,14 @@ class LikeCategoryView(View):
         
         return HttpResponse([category.likes, '#', liked])
     
-def get_category_list(max_results=0, starts_with=''):
-    category_list = []
+    def get_category_list(max_results=0, starts_with=''):
+        category_list = []
         
-    if starts_with:
-        category_list = Category.objects.filter(name__istartswith=starts_with)
+        if starts_with:
+            category_list = Category.objects.filter(name__istartwith=starts_with)
             
-    if max_results > 0:
-        if len(category_list) > max_results:
-            category_list = category_list[:max_results]
+        if max_results > 0:
+            if len(category_list) > max_results:
+                category_list = category_list[:max_results]
                 
-    return category_list
-    
-class CategorySuggestionView(View):
-    def get(self, request):
-        if 'suggestion' in request.GET:
-            suggestion = request.GET['suggestion']
-        else:
-            suggestion = ''
-                
-        category_list = get_category_list(max_results=8, starts_with=suggestion)
-            
-        if len(category_list) == 0:
-            category_list = Category.objects.order_by('-likes')
-                
-        return render(request, 'rango/categories.html', {'categories': category_list})
+        return category_list

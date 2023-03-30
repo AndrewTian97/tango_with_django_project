@@ -61,19 +61,13 @@ class ShowCategoryView(View):
         try:
             category = Category.objects.get(slug=category_name_slug)
             pages = Page.objects.filter(category=category).order_by('-views')
-            urls = []
-            for page in pages:
-                urls.append(page.url)
-            print(urls)
             
             context_dict['pages'] = pages
             context_dict['category'] = category
-            context_dict['urls'] = urls
         
         except Category.DoesNotExist:
             context_dict['category'] = None
             context_dict['pages'] = None
-            context_dict['urls'] = None
             
         return context_dict
     
@@ -171,24 +165,14 @@ class AddPageView(View):
         context_dict = {'form': form, 'category': category}
         return render(request, 'rango/add_page.html', context=context_dict)
     
-class SearchAddPageView(View):
+class AddPageFromResearchView(View):
     @method_decorator(login_required)
-    def get(self, request):
-        category_id = request.GET['category_id']
-        title = request.GET['title']
-        url = request.GET['url']
+    def get(self, request, category_name_slug):
+        category = self.parse_category(category_name_slug)
+        if category is None:
+            print(category)
+            return redirect('/rango/')
         
-        try:
-            category = Category.objects.get(id=int(category_id))
-        except Category.DoesNotExist:
-            return HttpResponse('Error - category not found.')
-        except ValueError:
-            return HttpResponse('Error - bad category ID.')
-        
-        p = Page.objects.get_or_create(category=category, title=title, url=url)
-        
-        pages = Page.objects.filter(category=category).order_by('-views')
-        return render(request, 'rango/page_listing.html', {'pages':pages})
     
 # @login_required <- this is the mark for function, so here it should be commented
 class RestrictedView(View):

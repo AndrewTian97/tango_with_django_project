@@ -64,16 +64,13 @@ class ShowCategoryView(View):
             urls = []
             for page in pages:
                 urls.append(page.url)
-            print(urls)
             
             context_dict['pages'] = pages
             context_dict['category'] = category
-            context_dict['urls'] = urls
         
         except Category.DoesNotExist:
             context_dict['category'] = None
             context_dict['pages'] = None
-            context_dict['urls'] = None
             
         return context_dict
     

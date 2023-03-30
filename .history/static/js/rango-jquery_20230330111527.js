@@ -48,13 +48,13 @@ $(document).ready(function() {
         var url = $(this).attr('data-url');
         var clickedButton = $(this);
 
-        $.get('/rango/search_add_page/',
+        $.get('/rango/search_add_pagoe/',
               {
                 'category_id': categoryid, 'title': title, 'url':url              
               },
               function(data) {
                 $('#result-item').html(data);
-                clickedButton.attr("disabled", true);
+                clickedButton.hide();
               })
     });
 });
